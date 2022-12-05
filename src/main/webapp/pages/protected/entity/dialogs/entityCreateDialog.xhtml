@@ -10,9 +10,18 @@
 		closable="true" draggable="false" resizable="false">
 		<h:form id="entityCreateDialogForm" prependId="false">
 			<h:panelGrid columns="2">
+				//ToDo
 				<h:outputText value="* #{bundle.entityName}" />
 				<h:inputText value="#{entityBean.generalEntity.titel}" required="true" label="#{bundle.entityName}" />
-		
+				<h:outputText value="* #{bundle.entityBeschreibung}" />
+				<h:inputText value="#{entityBean.generalEntity.beschreibung}" required="true" label="#{bundle.entityBeschreibung}" />
+				<h:outputText value="* #{bundle.entityDauer}" />
+				<h:inputText value="#{entityBean.generalEntity.aufwand}" required="true" label="#{bundle.entityDauer}" />
+				<h:outputText value="* #{bundle.entityFertigBis}" />
+				<h:inputText value="#{entityBean.generalEntity.beendetBis}" required="true" label="#{bundle.entityFertigBis}" />
+				<h:outputText value="* #{bundle.entityStatus}" />
+				<h:inputText value="#{entityBean.generalEntity.status}" required="true" label="#{bundle.entityStatus}" />
+
 				<p:commandButton value="#{bundle.create}" icon="pi pi-plus"
 					action="#{entityBean.createEntity()}"
 					update=":messageGrowl :entitiesForm:entitiesTable"
