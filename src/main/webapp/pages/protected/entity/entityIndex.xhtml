@@ -19,10 +19,6 @@
 					<p:column>
 						<p:commandButton value="#{bundle.detail}" icon="pi pi-info" onclick="PF('entityDetailDialogWidget').show()" update=":entityDetailDialogForm" >
 							<f:setPropertyActionListener target="#{entityBean.generalEntityForDetail}" value="#{entity}" />
-						</p:commandButton> 
-						<p:spacer width="10px" />
-						<p:commandButton rendered ="#{userBean.isCurrentUserAdmin()}" value="#{bundle.update}" icon="pi pi-pencil" update=":entityUpdateDialogForm" onclick="PF('entityUpdateDialogWidget').show()" >
-							<f:setPropertyActionListener target="#{entityBean.generalEntity}" value="#{entity}" />
 						</p:commandButton>
 						<p:spacer width="10px" />
 						<p:commandButton rendered ="#{userBean.isCurrentUserAdmin()}" value="#{bundle.delete}" icon="pi pi-trash" update=":entityDeleteDialogForm" onclick="PF('entityDeleteDialogWidget').show()" >
