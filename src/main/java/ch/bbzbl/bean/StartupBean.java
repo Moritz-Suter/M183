@@ -30,5 +30,12 @@ public class StartupBean {
 			dao.save(new User("admin", "admin", Role.ADMIN));
 			EntityManagerHelper.commitAndCloseTransaction();
 		}
+		u = facade.getUserIfExists("user", "user1234");
+		if (u == null) {
+			UserDAO dao = new UserDAO();
+			EntityManagerHelper.beginTransaction();
+			dao.save(new User("user", "user1234", Role.USER));
+			EntityManagerHelper.commitAndCloseTransaction();
+		}
 	}
 }

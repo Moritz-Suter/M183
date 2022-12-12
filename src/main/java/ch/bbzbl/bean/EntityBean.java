@@ -29,6 +29,7 @@ public class EntityBean extends AbstractBean implements Serializable {
 	public void createEntity() {
 		if (this.userBean.isCurrentUserUserOrHigher()) {
 			try {
+				generalEntity.setUser(userBean.getLoggedInUser());
 				getEntityFacade().createEntity(generalEntity);
 				closeDialog();
 				displayInfoMessageToUser("Created with success");

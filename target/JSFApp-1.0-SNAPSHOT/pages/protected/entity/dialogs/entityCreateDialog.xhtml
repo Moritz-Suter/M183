@@ -1,34 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:body>
-	<p:dialog widgetVar="entityCreateDialogWidget" 
-		id="entityCreateDialogId" height="150" width="500" modal="true"
-		closable="true" draggable="false" resizable="false">
-		<h:form id="entityCreateDialogForm" prependId="false">
-			<h:panelGrid columns="2">
-				<h:outputText value="* #{bundle.entityName}" />
-				<h:inputText value="#{entityBean.generalEntity.titel}" required="true" label="#{bundle.entityName}" />
-				<h:outputText value="* #{bundle.entityBeschreibung}" />
-				<h:inputText value="#{entityBean.generalEntity.beschreibung}" required="true" label="#{bundle.entityBeschreibung}" />
-				<h:outputText value="* #{bundle.entityDauer}" />
-				<h:inputText value="#{entityBean.generalEntity.aufwand}" required="true" label="#{bundle.entityDauer}" />
-				<h:outputText value="* #{bundle.entityFertigBis}" />
-				<h:inputText value="#{entityBean.generalEntity.beendetBis}" required="true" label="#{bundle.entityFertigBis}" />
-				<h:outputText value="* #{bundle.entityStatus}" />
-				<h:inputText value="#{entityBean.generalEntity.status}" required="true" label="#{bundle.entityStatus}" />
+    <p:dialog widgetVar="entityCreateDialogWidget"
+              id="entityCreateDialogId" height="150" width="500" modal="true"
+              closable="true" draggable="false" resizable="false">
+        <h:form id="entityCreateDialogForm" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputText value="* #{bundle.entityName}"/>
+                <p:inputText value="#{entityBean.generalEntity.titel}" required="true" label="#{bundle.entityName}"
+                             validatorMessage="Bitte nur Buchstaben und Zahlen benützen">
+                    <f:validateRegex pattern="^[A-Za-z0-9]+$"/>
+                </p:inputText>
+                <h:outputText value="* #{bundle.entityBeschreibung}"/>
+                <p:inputText value="#{entityBean.generalEntity.beschreibung}" required="true"
+                             label="#{bundle.entityBeschreibung}"
+                    validatorMessage="keine Sonderzeichen ausser .,">
+                    <f:validateRegex pattern="^[A-Za-z0-9., ]+$"/>
+                </p:inputText>
+                <h:outputText value="* #{bundle.entityDauer}"/>
+                <p:inputNumber value="#{entityBean.generalEntity.aufwand}" required="true"
+                               label="#{bundle.entityDauer}" minValue="0.1"/>
+                <h:outputText value="* #{bundle.entityFertigBis}"/>
+                <p:datePicker value="#{entityBean.generalEntity.beendetBis}" required="true"
+                              label="#{bundle.entityFertigBis}"/>
+                <h:outputText value="* #{bundle.entityStatus}"/>
+                <p:selectBooleanCheckbox value="#{entityBean.generalEntity.status}"/>
 
-				<p:commandButton value="#{bundle.create}" icon="pi pi-plus"
-					action="#{entityBean.createEntity()}"
-					update=":messageGrowl :entitiesForm:entitiesTable"
-					oncomplete="closeDialogIfSucess(xhr, status, args, PF('entityCreateDialogWidget'), 'entityCreateDialogId')" />
-				<p:commandButton value="#{bundle.cancel}" icon="pi pi-ban" actionListener="#{entityBean.resetEntity()}"
-					onclick="PF('entityCreateDialogWidget').hide()" type="button" />
-			</h:panelGrid>
-		</h:form>
-	</p:dialog>
+                <p:commandButton value="#{bundle.create}" icon="pi pi-plus"
+                                 action="#{entityBean.createEntity()}"
+                                 update=":messageGrowl :entitiesForm:entitiesTable"
+                                 oncomplete="closeDialogIfSucess(xhr, status, args, PF('entityCreateDialogWidget'), 'entityCreateDialogId')"/>
+                <p:commandButton value="#{bundle.cancel}" icon="pi pi-ban" actionListener="#{entityBean.resetEntity()}"
+                                 onclick="PF('entityCreateDialogWidget').hide()" type="button"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
 </h:body>
 </html>

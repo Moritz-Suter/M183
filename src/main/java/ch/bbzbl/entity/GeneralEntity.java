@@ -22,7 +22,7 @@ public class GeneralEntity implements Serializable {
 	private Date beendetBis;
 	private boolean status;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "user_id")
 	private User user;
 

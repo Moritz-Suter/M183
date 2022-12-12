@@ -3,9 +3,16 @@ package ch.bbzbl.facade;
 import java.io.Serializable;
 import java.util.List;
 
+import ch.bbzbl.bean.LoginBean;
 import ch.bbzbl.dao.EntityDAO;
 import ch.bbzbl.dao.EntityManagerHelper;
 import ch.bbzbl.entity.GeneralEntity;
+import ch.bbzbl.entity.User;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class EntityFacade implements Serializable {
 	private static final long serialVersionUID = 1L;
