@@ -7,9 +7,11 @@ import javax.persistence.*;
 
 @Entity
 @NamedQuery(name = "User.findUserByUsernamePwd", query = "select u from User u where u.username = :username and u.password = :password")
+@NamedQuery(name = "User.findUserByName", query = "select u from User u where u.username = :username")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final String FIND_BY_USERNAMEPWD = "User.findUserByUsernamePwd";
+    public static final String FIND_BY_NAME = "User.findUserByName";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,15 +24,18 @@ public class User implements Serializable {
 
     private String password;
 
+    private String salt;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public User() {
     }
 
-    public User(String userName, String password, Role role) {
+    public User(String userName, String password,String salt ,Role role) {
         this.username = userName;
         this.password = password;
+        this.salt = salt;
         this.role = role;
     }
 
@@ -91,5 +96,13 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return this.username;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

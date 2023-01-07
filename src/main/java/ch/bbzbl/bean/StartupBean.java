@@ -23,18 +23,18 @@ public class StartupBean {
 
 		// Create dummy ADMIN user if not exist
 		UserFacade facade = new UserFacade();
-		User u = facade.getUserIfExists("admin", "admin");
+		User u = facade.getUserIfExists("admin", "50317b958ee25a1e14449aeb95db5245");
 		if (u == null) {
 			UserDAO dao = new UserDAO();
 			EntityManagerHelper.beginTransaction();
-			dao.save(new User("admin", "admin", Role.ADMIN));
+			dao.save(new User("admin", "50317b958ee25a1e14449aeb95db5245","abcd" , Role.ADMIN ));
 			EntityManagerHelper.commitAndCloseTransaction();
 		}
-		u = facade.getUserIfExists("user", "user1234");
+		u = facade.getUserIfExists("a84f0fd08cfa73f99ac75f9b35561117", "user");
 		if (u == null) {
 			UserDAO dao = new UserDAO();
 			EntityManagerHelper.beginTransaction();
-			dao.save(new User("user", "user1234", Role.USER));
+			dao.save(new User("user", "a84f0fd08cfa73f99ac75f9b35561117", "dcba", Role.USER));
 			EntityManagerHelper.commitAndCloseTransaction();
 		}
 	}
