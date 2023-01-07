@@ -17,6 +17,13 @@ public class UserFacade implements Serializable{
 		EntityManagerHelper.commitAndCloseTransaction();
 		return user;
 	}
+
+	public User getUserIfExistsByName(String username) {
+		EntityManagerHelper.beginTransaction();
+		User user = userDAO.findUserIfExistsByName(username);
+		EntityManagerHelper.commitAndCloseTransaction();
+		return user;
+	}
 	
 	//...
 }
