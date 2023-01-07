@@ -7,12 +7,16 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "GeneralEntity.findEntityById", query = "select e from GeneralEntity e where e.id = :entityId")
+@NamedQueries({
+		@NamedQuery(name = "GeneralEntity.findEntityById", query = "select e from GeneralEntity e where e.id = :entityId"),
+		@NamedQuery(name = "GeneralEntity.findEntityByUser", query = "select e from GeneralEntity e where e.user = :user ")
+})
 public class GeneralEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_ENTITY_BY_ID = "GeneralEntity.findEntityById";
-	
+	public static final String FIND_ENTITY_BY_User = "GeneralEntity.findEntityByUser";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

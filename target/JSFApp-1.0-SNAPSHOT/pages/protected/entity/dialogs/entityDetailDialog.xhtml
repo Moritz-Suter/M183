@@ -8,6 +8,19 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="#{bundle.entityName}" />
 				<h:outputText value="#{entityBean.generalEntityForDetail.titel}" />
+				<h:outputText value="#{bundle.entityBeschreibung}" />
+				<h:outputText value="#{entityBean.generalEntityForDetail.beschreibung}" />
+				<h:outputText value="#{bundle.entityDauer}" />
+				<h:outputText value="#{entityBean.generalEntityForDetail.aufwand}" />
+				<h:outputText value="#{bundle.entityFertigBis}" />
+				<h:outputText value="#{entityBean.generalEntityForDetail.beendetBis}">
+					<f:convertDateTime pattern="dd.MM.yyyy"/>
+				</h:outputText>
+				<h:outputText value="#{bundle.entityStatus}" />
+				<h:outputText value="#{entityBean.generalEntityForDetail.status}" />
+				<h:outputText value="#{bundle.entityBenutzer}" />
+				<h:outputText value="#{entityBean.generalEntityForDetail.user.username}" />
+
 			</h:panelGrid>
  
 			<p:commandButton value="#{bundle.ok}" icon="pi pi-check"

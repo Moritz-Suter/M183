@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import ch.bbzbl.entity.GeneralEntity;
+import ch.bbzbl.entity.User;
 import ch.bbzbl.facade.EntityFacade;
 
 @ViewScoped
@@ -101,14 +102,16 @@ public class EntityBean extends AbstractBean implements Serializable {
 
 	public List<GeneralEntity> getAllEntities() {
 		if (generalEntities == null) {
-			loadEntities();
+			loadEntities(userBean.getLoggedInUser());
 		}
 
 		return generalEntities;
 	}
-
 	private void loadEntities() {
 		generalEntities = getEntityFacade().listAll();
+	}
+	private void loadEntities(User user) {
+		generalEntities = getEntityFacade().listAll(user);
 	}
 
 	public void resetEntity() {

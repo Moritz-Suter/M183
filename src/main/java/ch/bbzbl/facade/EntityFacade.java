@@ -45,10 +45,16 @@ public class EntityFacade implements Serializable {
 		EntityManagerHelper.commitAndCloseTransaction();
 		return generalEntity;
 	}
-
 	public List<GeneralEntity> listAll() {
 		EntityManagerHelper.beginTransaction();
 		List<GeneralEntity> result = entityDAO.findAll();
+		EntityManagerHelper.commitAndCloseTransaction();
+
+		return result;
+	}
+	public List<GeneralEntity> listAll(User user) {
+		EntityManagerHelper.beginTransaction();
+		List<GeneralEntity> result = entityDAO.findUserIfExists(user);
 		EntityManagerHelper.commitAndCloseTransaction();
 
 		return result;
